@@ -1,0 +1,23 @@
+<view class="container" style="background-color: {{colors.bgColor}};">
+  <view class="reports-list" wx:if="{{reports.length > 0}}">
+    <view class="report-card" style="background-color: {{colors.cardBg}};" wx:for="{{reports}}" wx:key="_id" bindtap="goToReport" data-id="{{item._id}}">
+      <view class="report-header">
+        <text class="report-type" style="background-color: {{item.color}};">{{item.type}}</text>
+        <text class="report-date" style="color: {{colors.textSec}};">{{item.createdAt}}</text>
+      </view>
+      <text class="report-title" style="color: {{colors.textMain}};">{{item.testTitle}}</text>
+      <view class="report-preview">
+        <text style="color: {{colors.textSec}};">{{item.preview}}</text>
+      </view>
+      <view class="report-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+        <text class="tag" wx:for="{{item.tags}}" wx:key="*">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">📊</text>
+    <text class="empty-text" style="color: {{colors.textSec}};">暂无报告</text>
+    <button class="empty-btn" bindtap="goToDiscover">去测试</button>
+  </view>
+</view>

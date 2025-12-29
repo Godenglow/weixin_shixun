@@ -1,0 +1,98 @@
+{
+  "databaseSchema": {
+    "users": {
+      "description": "用户信息集合",
+      "fields": {
+        "_id": "唯一标识ID",
+        "openid": "微信OpenID",
+        "unionid": "微信UnionID（可选）",
+        "userInfo": "用户基本信息（昵称、头像等）",
+        "points": "积分",
+        "level": "等级",
+        "testCount": "测试次数",
+        "completedTests": "已完成的测试列表",
+        "createdAt": "创建时间",
+        "lastLoginAt": "最后登录时间",
+        "updatedAt": "更新时间"
+      }
+    },
+    "tests": {
+      "description": "测试题目集合",
+      "fields": {
+        "_id": "唯一标识ID",
+        "title": "测试标题",
+        "description": "测试描述",
+        "category": "分类",
+        "tags": "标签数组",
+        "coverImage": "封面图URL",
+        "questionCount": "题目数量",
+        "estimatedTime": "预计完成时间（分钟）",
+        "isPublished": "是否发布",
+        "testCount": "完成次数",
+        "reportConfig": "报告配置",
+        "createdAt": "创建时间",
+        "updatedAt": "更新时间"
+      }
+    },
+    "questions": {
+      "description": "题目集合",
+      "fields": {
+        "_id": "唯一标识ID",
+        "testId": "所属测试ID",
+        "index": "题目序号",
+        "type": "题目类型（single/multiple/scale）",
+        "content": "题目内容",
+        "options": "选项数组",
+        "dimension": "维度（用于量表题）",
+        "required": "是否必答"
+      }
+    },
+    "records": {
+      "description": "测试记录集合",
+      "fields": {
+        "_id": "唯一标识ID",
+        "openid": "用户OpenID",
+        "testId": "测试ID",
+        "testTitle": "测试标题",
+        "answers": "答题记录",
+        "timeSpent": "用时（秒）",
+        "score": "得分",
+        "dimensions": "维度分数",
+        "reportId": "生成的报告ID",
+        "completedAt": "完成时间"
+      }
+    },
+    "reports": {
+      "description": "测试报告集合",
+      "fields": {
+        "_id": "唯一标识ID",
+        "openid": "用户OpenID",
+        "recordId": "测试记录ID",
+        "testId": "测试ID",
+        "testTitle": "测试标题",
+        "score": "总分",
+        "dimensions": "维度分数",
+        "analysis": "分析内容",
+        "suggestions": "建议数组",
+        "interpretation": "结果解读",
+        "imageFileID": "报告图片云存储ID",
+        "imageSavedAt": "图片保存时间",
+        "generatedAt": "生成时间"
+      }
+    },
+    "categories": {
+      "description": "测试分类集合",
+      "fields": {
+        "_id": "唯一标识ID",
+        "name": "分类名称",
+        "icon": "分类图标",
+        "index": "排序索引"
+      }
+    }
+  },
+  "cloudStoragePaths": {
+    "avatars": "/avatars/{userId}.jpg",
+    "covers": "/covers/{testId}.png",
+    "reports": "/reports/{reportId}.png"
+  }
+}

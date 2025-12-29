@@ -1,0 +1,44 @@
+<view class="container" style="background-color: {{colors.bgColor}};">
+  <view class="progress-bar">
+    <view class="progress-track">
+      <view class="progress-fill" style="width: {{progress}}%;"></view>
+    </view>
+    <text class="progress-text">{{currentIndex + 1}}/{{questions.length}}</text>
+  </view>
+
+  <view class="question-card" style="background-color: {{colors.cardBg}};">
+    <view class="question-header">
+      <text class="question-num">Q{{currentIndex + 1}}</text>
+      <text class="question-type" wx:if="{{currentQuestion.type === 'multiple'}}">多选</text>
+      <text class="question-type" wx:elif="{{currentQuestion.type === 'scale'}}">量表</text>
+    </view>
+    
+    <text class="question-content" style="color: {{colors.textMain}};">{{currentQuestion.content}}</text>
+    
+    <view class="options-list">
+      <view class="option-item" wx:for="{{currentQuestion.options}}" wx:key="index" 
+            wx:for-item="option" bindtap="selectOption" data-index="{{index}}"
+            class="{{selectedIndices.includes(index) ? 'selected' : ''}}">
+        <view class="option-indicator">
+          <view class="option-dot" wx:if="{{!isMultiple && selectedIndex === index}}"></view>
+          <view class="option-check" wx:if="{{isMultiple && selectedIndices.includes(index)}}">✓</view>
+        </view>
+        <text class="option-text" style="color: {{selectedIndices.includes(index) ? colors.textMain : colors.textSec}};">{{option.text}}</text>
+      </view>
+    </view>
+
+    <view class="scale-options" wx:if="{{currentQuestion.type === 'scale'}}">
+      <view class="scale-labels">
+        <text class="scale-label" style="color: {{colors.textSec}};">完全不符合</text>
+        <text class="scale-label" style="color: {{colors.textSec}};">完全符合</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="button-row">
+    <button class="nav-btn prev-btn" bindtap="prevQuestion" wx:if="{{currentIndex > 0}}">上一题</button>
+    <button class="nav-btn {{canSubmit ? 'submit-btn' : 'disabled-btn'}}" bindtap="nextQuestion">
+      {{isLast ? '提交测试' : '下一题'}}
+    </button>
+  </view>
+</view>

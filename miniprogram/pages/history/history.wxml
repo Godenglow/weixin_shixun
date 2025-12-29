@@ -1,0 +1,34 @@
+<view class="container" style="background-color: {{colors.bgColor}};">
+  <view class="tabs">
+    <view class="tab-item {{currentTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-tab="all">
+      <text>全部</text>
+    </view>
+    <view class="tab-item {{currentTab === 'recent' ? 'active' : ''}}" bindtap="switchTab" data-tab="recent">
+      <text>最近</text>
+    </view>
+  </view>
+
+  <view class="records-list" wx:if="{{records.length > 0}}">
+    <view class="record-card" style="background-color: {{colors.cardBg}};" wx:for="{{records}}" wx:key="_id" bindtap="goToResult" data-id="{{item._id}}" data-testid="{{item.testId}}">
+      <view class="record-cover-placeholder" wx:if="{{!item.testCover}}">
+        <text class="cover-icon">📝</text>
+      </view>
+      <image class="record-cover" src="{{item.testCover}}" mode="aspectFill" wx:else></image>
+      <view class="record-info">
+        <text class="record-title" style="color: {{colors.textMain}};">{{item.testTitle}}</text>
+        <text class="record-date" style="color: {{colors.textSec}};">{{item.completedAt}}</text>
+        <view class="record-score">
+          <text class="score-num" style="color: {{item.scoreColor}};">{{item.score}}</text>
+          <text class="score-label" style="color: {{colors.textSec}};">分</text>
+        </view>
+      </view>
+      <view class="record-arrow">></view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">📋</text>
+    <text class="empty-text" style="color: {{colors.textSec}};">暂无测试记录</text>
+    <button class="empty-btn" bindtap="goToDiscover">去测试</button>
+  </view>
+</view>

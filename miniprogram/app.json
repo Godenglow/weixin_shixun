@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/discover/discover",
+    "pages/test/test",
+    "pages/report/report",
+    "pages/profile/profile",
+    "pages/test-detail/test-detail",
+    "pages/result/result",
+    "pages/history/history",
+    "pages/reports/reports"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "心理测试",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#07C160",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/discover/discover",
+        "text": "发现",
+        "iconPath": "images/icons/discover.png",
+        "selectedIconPath": "images/icons/discover-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/icons/profile.png",
+        "selectedIconPath": "images/icons/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "darkmode": true,
+  "themeLocation": "theme.json"
+}

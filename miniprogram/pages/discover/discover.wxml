@@ -1,0 +1,53 @@
+<view class="container" style="background-color: {{colors.bgColor}};">
+  <view class="search-section">
+    <view class="search-bar">
+      <icon type="search" size="16" color="#999"/>
+      <input class="search-input" placeholder="搜索测试" placeholder-style="color: #999;" bindinput="onSearchInput" bindconfirm="doSearch" value="{{keyword}}"/>
+    </view>
+  </view>
+
+  <view class="category-bar">
+    <scroll-view scroll-x="true" class="category-scroll">
+      <view class="category-list">
+        <view class="category-item {{currentCategory === '' ? 'active' : ''}}" bindtap="selectCategory" data-category="">
+          <text>全部</text>
+        </view>
+        <view class="category-item {{currentCategory === item.name ? 'active' : ''}}" wx:for="{{categories}}" wx:key="_id" bindtap="selectCategory" data-category="{{item.name}}">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="test-list" wx:if="{{testList.length > 0}}">
+    <view class="test-item" wx:for="{{testList}}" wx:key="_id" bindtap="goToTest" data-id="{{item._id}}">
+      <image class="test-cover" src="{{item.coverImage || '/images/default-cover.png'}}" mode="aspectFill"></image>
+      <view class="test-info">
+        <view class="test-header">
+          <text class="test-title" style="color: {{colors.textMain}};">{{item.title}}</text>
+          <view class="test-tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:key="*" wx:for-item="tag">{{tag}}</text>
+          </view>
+        </view>
+        <text class="test-desc" style="color: {{colors.textSec}};">{{item.description}}</text>
+        <view class="test-footer">
+          <view class="test-meta">
+            <text class="meta-item">{{item.questionCount}}题</text>
+            <text class="meta-item">约{{item.estimatedTime}}分钟</text>
+            <text class="meta-item">{{item.testCount}}人测过</text>
+          </view>
+          <button class="start-btn">开始测试</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:elif="{{hasSearched}}">
+    <text class="empty-icon">🔍</text>
+    <text style="color: {{colors.textSec}};">未找到相关测试</text>
+  </view>
+
+  <view class="loading" wx:elif="{{loading}}">
+    <view class="loading-spinner"></view>
+  </view>
+</view>

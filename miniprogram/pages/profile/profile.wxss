@@ -1,0 +1,228 @@
+.container {
+  padding: 0;
+  padding-bottom: 30rpx;
+}
+
+.profile-header {
+  padding: 40rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  background-color: #f5f5f5;
+}
+
+.avatar-container {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  overflow: hidden;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.avatar-icon {
+  font-size: 60rpx;
+}
+
+.info-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.nickname {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.level-badge {
+  display: inline-block;
+  padding: 6rpx 16rpx;
+  font-size: 22rpx;
+  color: #ffffff;
+  background-color: #07C160;
+  border-radius: 20rpx;
+}
+
+.login-btn {
+  padding: 16rpx 40rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  background-color: #07C160;
+  border-radius: 36rpx;
+  border: none;
+  line-height: 1.5;
+  min-width: 160rpx;
+  text-align: center;
+}
+
+.login-btn::after {
+  border: none;
+}
+
+.login-btn:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+.auth-btn {
+  margin-top: 16rpx;
+  padding: 12rpx 32rpx;
+  font-size: 24rpx;
+  color: #07C160;
+  background-color: transparent;
+  border-radius: 30rpx;
+  border: 2rpx solid #07C160;
+  line-height: 1.5;
+}
+
+.auth-btn::after {
+  border: none;
+}
+
+.auth-btn:active {
+  background-color: rgba(7, 193, 96, 0.1);
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #07C160;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  margin-top: 8rpx;
+}
+
+.level-progress {
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+  margin-bottom: 8rpx;
+}
+
+.progress-bar {
+  height: 8rpx;
+  background-color: #e0e0e0;
+  border-radius: 4rpx;
+  overflow: hidden;
+  margin-bottom: 8rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #07C160, #10B981);
+  border-radius: 4rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 22rpx;
+  text-align: center;
+  display: block;
+}
+
+.menu-section {
+  margin: 20rpx 30rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 24rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.menu-text {
+  font-size: 28rpx;
+}
+
+.menu-arrow {
+  font-size: 28rpx;
+  color: #cccccc;
+}
+
+.toggle-switch {
+  width: 88rpx;
+  height: 48rpx;
+  background-color: #e0e0e0;
+  border-radius: 24rpx;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-switch.active {
+  background-color: #07C160;
+}
+
+.toggle-knob {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 4rpx;
+  left: 4rpx;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.toggle-switch.active .toggle-knob {
+  transform: translateX(40rpx);
+}

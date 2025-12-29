@@ -1,0 +1,55 @@
+<view class="container" style="background-color: {{colors.bgColor}};">
+  <view class="header-cover">
+    <view class="cover-placeholder" wx:if="{{!test.coverImage}}">
+      <text class="cover-placeholder-icon">🧠</text>
+    </view>
+    <image class="cover-image" src="{{test.coverImage}}" mode="aspectFill" wx:else></image>
+    <view class="cover-overlay"></view>
+    <view class="header-content">
+      <text class="test-title">{{test.title}}</text>
+      <view class="test-tags" wx:if="{{test.tags && test.tags.length > 0}}">
+        <text class="tag" wx:for="{{test.tags}}" wx:key="*">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="info-section" style="background-color: {{colors.cardBg}};">
+    <view class="info-item">
+      <text class="info-value">{{test.questionCount || 0}}</text>
+      <text class="info-label">题目数</text>
+    </view>
+    <view class="info-item">
+      <text class="info-value">约{{test.estimatedTime || 0}}分钟</text>
+      <text class="info-label">预计时间</text>
+    </view>
+    <view class="info-item">
+      <text class="info-value">{{test.testCount || 0}}</text>
+      <text class="info-label">人已测过</text>
+    </view>
+  </view>
+
+  <view class="description-section" style="background-color: {{colors.cardBg}};">
+    <text class="section-label">测试介绍</text>
+    <text class="description-text" style="color: {{colors.textSec}};">{{test.description}}</text>
+  </view>
+
+  <view class="notice-section" style="background-color: {{colors.cardBg}};">
+    <text class="section-label">测试须知</text>
+    <view class="notice-item">
+      <text class="notice-num">1</text>
+      <text class="notice-text" style="color: {{colors.textSec}};">请根据实际情况作答，答案没有对错之分</text>
+    </view>
+    <view class="notice-item">
+      <text class="notice-num">2</text>
+      <text class="notice-text" style="color: {{colors.textSec}};">测试结果仅供参考，不能替代专业诊断</text>
+    </view>
+    <view class="notice-item">
+      <text class="notice-num">3</text>
+      <text class="notice-text" style="color: {{colors.textSec}};">建议在安静的环境下进行测试</text>
+    </view>
+  </view>
+
+  <view class="footer-bar">
+    <button class="start-test-btn" bindtap="startTest">开始测试</button>
+  </view>
+</view>

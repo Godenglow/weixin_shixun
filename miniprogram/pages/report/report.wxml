@@ -1,0 +1,63 @@
+<view class="container" style="background-color: {{colors.bgColor}};">
+  <view class="report-header">
+    <text class="report-title" style="color: {{colors.textMain}};">{{report.testTitle}}</text>
+    <text class="report-date" style="color: {{colors.textSec}};">{{report.createdAt}}</text>
+  </view>
+
+  <view class="score-section" style="background-color: {{colors.cardBg}};">
+    <text class="section-title" style="color: {{colors.textMain}};">综合评分</text>
+    <view class="score-display">
+      <view class="score-circle">
+        <text class="score-num">{{report.score}}</text>
+        <text class="score-unit">分</text>
+      </view>
+      <view class="level-badge" style="background-color: {{report.interpretation.color}};">
+        <text>{{report.interpretation.level}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="interpretation-section" style="background-color: {{colors.cardBg}};">
+    <text class="section-title" style="color: {{colors.textMain}};">结果解读</text>
+    <view class="interpretation-content">
+      <text class="interpretation-text" style="color: {{colors.textSec}};">{{report.interpretation.desc}}</text>
+    </view>
+  </view>
+
+  <view class="analysis-section" style="background-color: {{colors.cardBg}};">
+    <text class="section-title" style="color: {{colors.textMain}};">深度分析</text>
+    <text class="analysis-text" style="color: {{colors.textSec}};">{{report.analysis}}</text>
+  </view>
+
+  <view class="suggestions-section" wx:if="{{report.suggestions.length > 0}}" style="background-color: {{colors.cardBg}};">
+    <text class="section-title" style="color: {{colors.textMain}};">改善建议</text>
+    <view class="suggestion-item" wx:for="{{report.suggestions}}" wx:key="index">
+      <view class="suggestion-num">{{index + 1}}</view>
+      <text class="suggestion-text" style="color: {{colors.textSec}};">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="dimensions-section" wx:if="{{report.dimensions && Object.keys(report.dimensions).length > 0}}" style="background-color: {{colors.cardBg}};">
+    <text class="section-title" style="color: {{colors.textMain}};">维度详情</text>
+    <view class="dimension-row" wx:for="{{dimensionList}}" wx:key="name">
+      <text class="dimension-name" style="color: {{colors.textMain}};">{{item.name}}</text>
+      <view class="dimension-bar-wrapper">
+        <view class="dimension-bar-bg">
+          <view class="dimension-bar-fill" style="width: {{item.percent}}%; background-color: {{item.color}};"></view>
+        </view>
+        <text class="dimension-score" style="color: {{item.color}};">{{item.score}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-bar">
+    <button class="action-btn" bindtap="shareReport">
+      <text>分享报告</text>
+    </button>
+    <button class="action-btn primary" bindtap="saveToAlbum">
+      <text>保存报告</text>
+    </button>
+  </view>
+
+  <canvas canvas-id="reportCanvas" style="width: 375px; height: 600px; position: fixed; left: -9999px;"></canvas>
+</view>

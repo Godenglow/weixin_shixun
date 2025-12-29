@@ -1,0 +1,88 @@
+<view class="container" style="background-color: {{colors.bgColor}};">
+  <view class="header">
+    <view class="welcome-section">
+      <text class="welcome-text">你好，{{userInfo.nickName || '游客'}}</text>
+      <text class="subtitle">发现更好的自己</text>
+    </view>
+    <view class="stats-card" style="background-color: {{colors.cardBg}};">
+      <view class="stat-item">
+        <text class="stat-value">{{userProfile.testCount || 0}}</text>
+        <text class="stat-label">已测</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{userProfile.points || 0}}</text>
+        <text class="stat-label">积分</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">Lv.{{userProfile.level || 1}}</text>
+        <text class="stat-label">等级</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title" style="color: {{colors.textMain}};">为你推荐</text>
+    </view>
+    <scroll-view scroll-x="true" class="recommend-scroll">
+      <view class="recommend-list">
+        <view class="recommend-item" wx:for="{{recommendList}}" wx:key="_id" bindtap="goToTest" data-id="{{item._id}}">
+          <view class="recommend-cover-placeholder" wx:if="{{!item.coverImage}}">
+            <text class="cover-icon">✨</text>
+          </view>
+          <image class="recommend-cover" src="{{item.coverImage}}" mode="aspectFill" wx:else></image>
+          <view class="recommend-info">
+            <text class="recommend-title" style="color: {{colors.textMain}};">{{item.title}}</text>
+            <text class="recommend-desc">{{item.questionCount}}题 | 约{{item.estimatedTime}}分钟</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title" style="color: {{colors.textMain}};">热门测试</text>
+      <text class="more-btn" bindtap="goToDiscover">查看更多 ></text>
+    </view>
+    <view class="hot-list">
+      <view class="hot-item" wx:for="{{hotList}}" wx:key="_id" bindtap="goToTest" data-id="{{item._id}}">
+        <view class="hot-cover-placeholder" wx:if="{{!item.coverImage}}">
+          <text class="cover-icon">🔥</text>
+        </view>
+        <image class="hot-cover" src="{{item.coverImage}}" mode="aspectFill" wx:else></image>
+        <view class="hot-info">
+          <text class="hot-title" style="color: {{colors.textMain}};">{{item.title}}</text>
+          <text class="hot-desc">{{item.description}}</text>
+          <view class="hot-meta">
+            <text class="hot-count">{{item.testCount}}人已测</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick-section">
+    <view class="section-header">
+      <text class="section-title" style="color: {{colors.textMain}};">快速入口</text>
+    </view>
+    <view class="quick-grid">
+      <view class="quick-item" bindtap="goToCategory" data-category="情绪">
+        <view class="quick-icon" style="background-color: #FF6B6B;">情</view>
+        <text class="quick-label" style="color: {{colors.textMain}};">情绪管理</text>
+      </view>
+      <view class="quick-item" bindtap="goToCategory" data-category="性格">
+        <view class="quick-icon" style="background-color: #4ECDC4;">性</view>
+        <text class="quick-label" style="color: {{colors.textMain}};">性格测试</text>
+      </view>
+      <view class="quick-item" bindtap="goToCategory" data-category="人际关系">
+        <view class="quick-icon" style="background-color: #45B7D1;">人</view>
+        <text class="quick-label" style="color: {{colors.textMain}};">人际关系</text>
+      </view>
+      <view class="quick-item" bindtap="goToCategory" data-category="职业">
+        <view class="quick-icon" style="background-color: #96CEB4;">职</view>
+        <text class="quick-label" style="color: {{colors.textMain}};">职业发展</text>
+      </view>
+    </view>
+  </view>
+</view>
