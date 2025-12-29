@@ -6,9 +6,12 @@ Page({
   },
 
   onLoad: function(options) {
+    console.log('test-detail onLoad options:', options)
     if (options.id) {
-      this.setData({ testId: options.id })
-      this.loadTestDetail()
+      this.setData({ testId: options.id }, () => {
+        console.log('testId set:', this.data.testId)
+        this.loadTestDetail()
+      })
     }
     this.initTheme()
   },
@@ -37,6 +40,7 @@ Page({
   },
 
   loadTestDetail: function() {
+    console.log('loadTestDetail called, this.data.testId:', this.data.testId)
     wx.showLoading({ title: '加载中...' })
     wx.cloud.callFunction({
       name: 'tests',
@@ -45,6 +49,7 @@ Page({
         testId: this.data.testId
       },
       success: (res) => {
+        console.log('getDetail response:', res.result)
         if (res.result.success) {
           this.setData({ test: res.result.data })
           wx.setNavigationBarTitle({
@@ -53,6 +58,7 @@ Page({
         }
       },
       fail: (err) => {
+        console.error('getDetail fail:', err)
         wx.showToast({ title: '加载失败', icon: 'none' })
       },
       complete: () => {

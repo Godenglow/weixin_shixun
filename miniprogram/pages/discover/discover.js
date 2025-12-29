@@ -29,8 +29,10 @@ Page({
     const category = wx.getStorageSync('selectedCategory')
     if (category) {
       console.log('onShow category from storage:', category)
-      this.setData({ currentCategory: category })
-      this.loadTests()
+      this.setData({ currentCategory: category }, () => {
+        console.log('setData completed, currentCategory:', this.data.currentCategory)
+        this.loadTests()
+      })
       wx.removeStorageSync('selectedCategory')
     } else if (this.data.currentCategory && this.data.testList.length === 0) {
       this.loadTests()

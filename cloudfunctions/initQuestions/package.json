@@ -1,0 +1,11 @@
+{
+  "name": "initQuestions",
+  "version": "1.0.0",
+  "description": "初始化测试题目数据",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

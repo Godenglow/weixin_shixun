@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
       case 'getList':
         return await getTestList(data)
       case 'getDetail':
-        return await getTestDetail(data)
+        return await getTestDetail(event)
       case 'getByCategory':
         return await getTestsByCategory(data)
       case 'search':
@@ -42,23 +42,34 @@ async function getTestList(data) {
   const { page = 1, pageSize = 10, category = '' } = data
   const skip = (page - 1) * pageSize
   
+  console.log('=== getTestList ===')
+  console.log('category:', category)
+  console.log('page:', page)
+  console.log('pageSize:', pageSize)
+  
   try {
     let query = db.collection('tests').where({
       isPublished: true
     })
     
     if (category) {
+      console.log('Filtering by category:', category)
       query = query.where({
         category: category
       })
     }
     
     const totalRes = await query.count()
+    console.log('Total matching tests:', totalRes.total)
+    
     const listRes = await query
       .orderBy('createdAt', 'desc')
       .skip(skip)
       .limit(pageSize)
       .get()
+    
+    console.log('Retrieved tests count:', listRes.data.length)
+    console.log('Tests data:', JSON.stringify(listRes.data, null, 2))
     
     return {
       success: true,
@@ -70,6 +81,7 @@ async function getTestList(data) {
       }
     }
   } catch (error) {
+    console.error('getTestList error:', error)
     return {
       success: false,
       message: error.message
@@ -77,15 +89,22 @@ async function getTestList(data) {
   }
 }
 
-async function getTestDetail(data) {
-  const { testId } = data
+async function getTestDetail(event) {
+  const testId = event.testId
+  
+  console.log('=== getTestDetail ===')
+  console.log('testId:', testId)
   
   try {
+    console.log('Fetching test from tests collection...')
     const testRes = await db.collection('tests').doc(testId).get()
+    console.log('Test data:', JSON.stringify(testRes.data))
     
+    console.log('Fetching questions from questions collection...')
     const questionsRes = await db.collection('questions').where({
       testId: testId
     }).orderBy('index', 'asc').get()
+    console.log('Questions count:', questionsRes.data.length)
     
     return {
       success: true,
@@ -95,6 +114,7 @@ async function getTestDetail(data) {
       }
     }
   } catch (error) {
+    console.error('getTestDetail error:', error)
     return {
       success: false,
       message: error.message
